@@ -31,7 +31,7 @@ object GraphBuilder {
         if (director.isBlank()) {
             director = "sem-diretor-" + doc.id;
         }
-        return Movie(doc.id, doc.title, director, genres, cast, doc.franchise, doc.releaseYear, doc.rating, );
+        return Movie(doc.id, doc.title, director, genres, cast, doc.franchise, doc.rating, doc.releaseYear);
     }
 
     private fun toRoleType(role: String): RoleType {

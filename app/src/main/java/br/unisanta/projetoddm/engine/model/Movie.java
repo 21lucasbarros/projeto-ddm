@@ -13,7 +13,7 @@ public class Movie {
     private int releaseYear;
     private double rating; // nota do filme (ano eh usada no calculo, so informativa msm)
 
-    public Movie(String id, String title, String director, Set<String> genres, List<CastMember> cast, String franchise, int releaseYear, double rating) {
+    public Movie(String id, String title, String director, Set<String> genres, List<CastMember> cast, String franchise, double rating, int releaseYear) {
         this.id = id;
         this.title = title;
         this.director = director;
