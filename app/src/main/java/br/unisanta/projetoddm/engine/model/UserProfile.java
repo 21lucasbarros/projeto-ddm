@@ -31,7 +31,7 @@ public class UserProfile {
         return name;
     }
 
-    public void addLikedMovies(Movie movie) {
+    public void addLikedMovie(Movie movie) {
         if(!likedMovies.contains(movie)) {
             likedMovies.add(movie);
         }
