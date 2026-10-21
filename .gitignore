@@ -1,15 +1,37 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Gradle
+.gradle/
+build/
+app/build/
+.kotlin/
+
+# Configurações locais (caminho do SDK, chaves)
 local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Arquivos gerados
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+output-metadata.json
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Keystores (assinatura de release)
+*.jks
+*.keystore
+
+# Firebase: descomente se NÃO quiser subir a configuração do Firebase
+app/google-services.json
