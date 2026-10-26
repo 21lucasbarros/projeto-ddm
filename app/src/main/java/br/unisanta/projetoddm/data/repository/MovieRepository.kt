@@ -46,4 +46,9 @@ class MovieRepository {
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { e -> onError("Erro ao popular o DB: " + e.message) }
     }
+
+    // salva só o campo posterUrl de um filme
+    fun updatePoster(movieId: String, posterUrl: String) {
+        movies.document(movieId).update("posterUrl", posterUrl)
+    }
 }

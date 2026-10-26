@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.unisanta.projetoddm.R
 import br.unisanta.projetoddm.data.SeedData
+import br.unisanta.projetoddm.data.TmdbClient
 import br.unisanta.projetoddm.data.model.MovieDoc
 import br.unisanta.projetoddm.data.repository.AuthRepository
 import br.unisanta.projetoddm.data.repository.MovieRepository
@@ -30,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
 
     private val todosOsFilmes = ArrayList<MovieDoc>()
     private var jaTentouPopular = false
+    private var buscandoPosters = false
 
     private lateinit var adapter: MovieAdapter
     private lateinit var etSearch: TextInputEditText
@@ -88,6 +90,7 @@ class HomeActivity : AppCompatActivity() {
                     todosOsFilmes.clear()
                     todosOsFilmes.addAll(movies)
                     filtrar(etSearch.text.toString())
+                    completarPosters()
                 }
             },
             onError = { mensagem ->
@@ -97,7 +100,7 @@ class HomeActivity : AppCompatActivity() {
         )
     }
 
-    // primeira execução o Firestore ta vazio, então grava os filmes inicial
+    // primeira execução: o Firestore está vazio, então grava o catálogo inicial
     private fun popularCatalogo() {
         jaTentouPopular = true
         movieRepository.seedMovies(SeedData.getMovies(),
@@ -107,6 +110,46 @@ class HomeActivity : AppCompatActivity() {
                 Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show()
             }
         )
+    }
+
+    // busca no TMDB o poster dos filmes que ainda não têm e salva no Firestore
+    private fun completarPosters() {
+        if (buscandoPosters || !TmdbClient.temChave()) return
+
+        val semPoster = ArrayList<MovieDoc>()
+        for (movie in todosOsFilmes) {
+            if (movie.posterUrl.isBlank()) {
+                semPoster.add(movie)
+            }
+        }
+        if (semPoster.isEmpty()) return
+
+        buscandoPosters = true
+
+        Thread {
+            val encontrados = HashMap<String, String>()
+            for (movie in semPoster) {
+                val url = TmdbClient.buscarPosterUrl(movie.title, movie.releaseYear)
+                if (url.isNotEmpty()) {
+                    movieRepository.updatePoster(movie.id, url)
+                    encontrados[movie.id] = url
+                }
+            }
+
+            runOnUiThread {
+                buscandoPosters = false
+                if (isFinishing || isDestroyed) return@runOnUiThread
+
+                // aqui atualiza a lista na tela sem precisar buscar tudo de novo
+                for (i in todosOsFilmes.indices) {
+                    val url = encontrados[todosOsFilmes[i].id]
+                    if (url != null) {
+                        todosOsFilmes[i] = todosOsFilmes[i].copy(posterUrl = url)
+                    }
+                }
+                filtrar(etSearch.text.toString())
+            }
+        }.start()
     }
 
     private fun filtrar(busca: String) {
