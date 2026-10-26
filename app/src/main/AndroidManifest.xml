@@ -43,6 +43,10 @@
             android:name=".ui.recommendations.RecommendationsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.liked.LikedMoviesActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

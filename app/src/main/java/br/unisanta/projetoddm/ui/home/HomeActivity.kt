@@ -16,6 +16,7 @@ import br.unisanta.projetoddm.data.model.MovieDoc
 import br.unisanta.projetoddm.data.repository.AuthRepository
 import br.unisanta.projetoddm.data.repository.MovieRepository
 import br.unisanta.projetoddm.ui.auth.LoginActivity
+import br.unisanta.projetoddm.ui.liked.LikedMoviesActivity
 import br.unisanta.projetoddm.ui.movie.MovieDetailActivity
 import br.unisanta.projetoddm.ui.recommendations.RecommendationsActivity
 import com.google.android.material.appbar.MaterialToolbar
@@ -42,7 +43,10 @@ class HomeActivity : AppCompatActivity() {
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         toolbar.inflateMenu(R.menu.menu_home)
         toolbar.setOnMenuItemClickListener { item ->
-            if (item.itemId == R.id.action_logout) {
+            if (item.itemId == R.id.action_liked) {
+                startActivity(Intent(this, LikedMoviesActivity::class.java))
+                true
+            } else if (item.itemId == R.id.action_logout) {
                 sair()
                 true
             } else {
