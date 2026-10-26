@@ -1,13 +1,17 @@
 package br.unisanta.projetoddm.ui.recommendations
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.unisanta.projetoddm.R
 import br.unisanta.projetoddm.data.recommendation.RecommendationItem
+import com.bumptech.glide.Glide
 
 class RecommendationAdapter(
     private val onClick: (RecommendationItem) -> Unit
@@ -23,6 +27,7 @@ class RecommendationAdapter(
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val ivPoster: ImageView = view.findViewById(R.id.ivPoster)
         val tvRank: TextView = view.findViewById(R.id.tvRank)
         val tvTitle: TextView = view.findViewById(R.id.tvTitle)
         val tvScore: TextView = view.findViewById(R.id.tvScore)
@@ -47,6 +52,13 @@ class RecommendationAdapter(
             motivos.append("• ").append(motivo).append("\n")
         }
         holder.tvReasons.text = motivos.toString().trim()
+
+        // fundo cinza enquanto carrega ou se o filme não tiver poster
+        Glide.with(holder.ivPoster)
+            .load(item.movie.posterUrl)
+            .placeholder(ColorDrawable(Color.LTGRAY))
+            .error(ColorDrawable(Color.LTGRAY))
+            .into(holder.ivPoster)
 
         holder.itemView.setOnClickListener { onClick(item) }
     }

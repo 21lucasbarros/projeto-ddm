@@ -27,6 +27,15 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <ImageView
+                    android:id="@+id/ivPoster"
+                    android:layout_width="180dp"
+                    android:layout_height="270dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:contentDescription="Pôster do filme"
+                    android:scaleType="centerCrop" />
+
                 <TextView
                     android:id="@+id/tvTitle"
                     android:layout_width="match_parent"

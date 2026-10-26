@@ -1,13 +1,17 @@
 package br.unisanta.projetoddm.ui.home
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.unisanta.projetoddm.R
 import br.unisanta.projetoddm.data.model.MovieDoc
+import com.bumptech.glide.Glide
 
 class MovieAdapter(
     private val onClick: (MovieDoc) -> Unit
@@ -23,6 +27,7 @@ class MovieAdapter(
     }
 
     class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val ivPoster: ImageView = view.findViewById(R.id.ivPoster)
         val tvTitle: TextView = view.findViewById(R.id.tvTitle)
         val tvDirector: TextView = view.findViewById(R.id.tvDirector)
         val tvGenres: TextView = view.findViewById(R.id.tvGenres)
@@ -38,6 +43,14 @@ class MovieAdapter(
         holder.tvTitle.text = movie.title + " (" + movie.releaseYear + ")"
         holder.tvDirector.text = "Direção: " + movie.director
         holder.tvGenres.text = movie.genres.joinToString(" • ")
+
+        // fundo cinza basico enquanto carrega ou se o filme n tiver poster
+        Glide.with(holder.ivPoster)
+            .load(movie.posterUrl)
+            .placeholder(ColorDrawable(Color.LTGRAY))
+            .error(ColorDrawable(Color.LTGRAY))
+            .into(holder.ivPoster)
+
         holder.itemView.setOnClickListener { onClick(movie) }
     }
 

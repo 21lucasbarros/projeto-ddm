@@ -1,7 +1,10 @@
 package br.unisanta.projetoddm.ui.movie
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RatingBar
 import android.widget.TextView
@@ -12,6 +15,7 @@ import br.unisanta.projetoddm.data.model.MovieDoc
 import br.unisanta.projetoddm.data.repository.AuthRepository
 import br.unisanta.projetoddm.data.repository.MovieRepository
 import br.unisanta.projetoddm.data.repository.RatingRepository
+import com.bumptech.glide.Glide
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 
@@ -35,6 +39,7 @@ class MovieDetailActivity : AppCompatActivity() {
     private lateinit var ratingBar: RatingBar
     private lateinit var btnSave: MaterialButton
     private lateinit var progress: ProgressBar
+    private lateinit var ivPoster: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +56,7 @@ class MovieDetailActivity : AppCompatActivity() {
         ratingBar = findViewById(R.id.ratingBar)
         btnSave = findViewById(R.id.btnSave)
         progress = findViewById(R.id.progress)
+        ivPoster = findViewById(R.id.ivPoster)
 
         val idRecebido = intent.getStringExtra(EXTRA_MOVIE_ID)
         if (idRecebido == null) {
@@ -80,6 +86,13 @@ class MovieDetailActivity : AppCompatActivity() {
     }
 
     private fun mostrarFilme(movie: MovieDoc) {
+        // usa a própria ImageView: evita erro se a tela já tiver sido fechada
+        Glide.with(ivPoster)
+            .load(movie.posterUrl)
+            .placeholder(ColorDrawable(Color.LTGRAY))
+            .error(ColorDrawable(Color.LTGRAY))
+            .into(ivPoster)
+
         tvTitle.text = movie.title
         tvInfo.text = movie.releaseYear.toString() + " • Direção: " + movie.director + " • Nota " + movie.rating
         tvGenres.text = movie.genres.joinToString(" • ")
