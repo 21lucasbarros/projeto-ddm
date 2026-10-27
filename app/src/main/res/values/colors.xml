@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    // cores nossa do app
+    <color name="elo_primary">#05339C</color>
+    <color name="elo_primary_container">#E3E9FA</color>
+    <color name="elo_on_primary_container">#021E5C</color>
+    <color name="elo_background">#F6F7FA</color>
+    <color name="elo_surface">#FFFFFF</color>
+    <color name="elo_on_surface">#151821</color>
+    <color name="elo_on_surface_variant">#646B7A</color>
+    <color name="elo_outline">#D6DAE3</color>
+    <color name="elo_card_stroke">#E8EAF0</color>
 </resources>

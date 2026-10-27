@@ -11,32 +11,35 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingHorizontal="28dp"
+        android:paddingVertical="32dp">
 
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="Logo do app"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:contentDescription="Logo do Elo"
             android:scaleType="fitCenter"
             android:src="@drawable/logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Elo"
-            android:textAppearance="?attr/textAppearanceHeadlineLarge"
+            android:textAppearance="?attr/textAppearanceHeadlineMedium"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="36dp"
             android:gravity="center"
-            android:text="Recomendações de filmes baseadas em grafo" />
+            android:text="Descubra filmes conectados ao que você ama"
+            android:textColor="?attr/colorOnSurfaceVariant" />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Elo.TextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="E-mail">
@@ -49,10 +52,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Elo.TextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="14dp"
             android:hint="Senha"
             app:endIconMode="password_toggle">
 
@@ -67,7 +70,7 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="28dp"
             android:text="Entrar" />
 
         <ProgressBar
@@ -81,9 +84,10 @@
             android:id="@+id/tvGoRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:padding="8dp"
             android:text="Não tem conta? Cadastre-se"
-            android:textColor="?attr/colorPrimary" />
+            android:textColor="?attr/colorPrimary"
+            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>
