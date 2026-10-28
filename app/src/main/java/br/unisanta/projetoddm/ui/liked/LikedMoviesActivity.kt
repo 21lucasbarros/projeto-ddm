@@ -15,11 +15,12 @@ import br.unisanta.projetoddm.data.model.RatingDoc
 import br.unisanta.projetoddm.data.repository.AuthRepository
 import br.unisanta.projetoddm.data.repository.MovieRepository
 import br.unisanta.projetoddm.data.repository.RatingRepository
+import br.unisanta.projetoddm.ui.BaseActivity
 import br.unisanta.projetoddm.ui.home.MovieAdapter
 import br.unisanta.projetoddm.ui.movie.MovieDetailActivity
 import com.google.android.material.appbar.MaterialToolbar
 
-class LikedMoviesActivity : AppCompatActivity() {
+class LikedMoviesActivity : BaseActivity() {
 
     // mesmo critério, nota 4 ou 5 conta como curtido
     private val NOTA_MINIMA_CURTIDO = 4

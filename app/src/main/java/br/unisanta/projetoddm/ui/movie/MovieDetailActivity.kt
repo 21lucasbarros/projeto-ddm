@@ -15,11 +15,12 @@ import br.unisanta.projetoddm.data.model.MovieDoc
 import br.unisanta.projetoddm.data.repository.AuthRepository
 import br.unisanta.projetoddm.data.repository.MovieRepository
 import br.unisanta.projetoddm.data.repository.RatingRepository
+import br.unisanta.projetoddm.ui.BaseActivity
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 
-class MovieDetailActivity : AppCompatActivity() {
+class MovieDetailActivity : BaseActivity() {
 
     companion object {
         const val EXTRA_MOVIE_ID = "movie_id"

@@ -16,10 +16,11 @@ import br.unisanta.projetoddm.data.recommendation.RecommendationService
 import br.unisanta.projetoddm.data.repository.AuthRepository
 import br.unisanta.projetoddm.data.repository.MovieRepository
 import br.unisanta.projetoddm.data.repository.RatingRepository
+import br.unisanta.projetoddm.ui.BaseActivity
 import br.unisanta.projetoddm.ui.movie.MovieDetailActivity
 import com.google.android.material.appbar.MaterialToolbar
 
-class RecommendationsActivity : AppCompatActivity() {
+class RecommendationsActivity : BaseActivity() {
 
     private val authRepository = AuthRepository()
     private val movieRepository = MovieRepository()

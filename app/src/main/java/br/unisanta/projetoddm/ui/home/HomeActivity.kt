@@ -16,6 +16,7 @@ import br.unisanta.projetoddm.data.TmdbClient
 import br.unisanta.projetoddm.data.model.MovieDoc
 import br.unisanta.projetoddm.data.repository.AuthRepository
 import br.unisanta.projetoddm.data.repository.MovieRepository
+import br.unisanta.projetoddm.ui.BaseActivity
 import br.unisanta.projetoddm.ui.auth.LoginActivity
 import br.unisanta.projetoddm.ui.liked.LikedMoviesActivity
 import br.unisanta.projetoddm.ui.movie.MovieDetailActivity
@@ -24,7 +25,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
 
     private val authRepository = AuthRepository()
     private val movieRepository = MovieRepository()

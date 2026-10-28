@@ -9,11 +9,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.unisanta.projetoddm.R
 import br.unisanta.projetoddm.data.repository.AuthRepository
+import br.unisanta.projetoddm.ui.BaseActivity
 import br.unisanta.projetoddm.ui.home.HomeActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : BaseActivity() {
 
     private val authRepository = AuthRepository()
 
